@@ -30,6 +30,31 @@ git clone https://github.com/prabureddy/ai-research-agent-mcp.git \
 
 > **⚡ Quick Start:** Clone → Install → Configure Claude Desktop → Start researching in 5 minutes!
 
+---
+
+## 📸 See It In Action
+
+![Demo](images/demo.gif)
+
+📺 **[Watch the full video demo on YouTube](https://youtu.be/_cQLKpfDTBY)**
+
+![Research Output Example](images/demo-1.png)
+
+**Example Task → Output:**
+```
+"Research top 3 programming languages in 2026 and create a comparison chart"
+
+→ research_runs/2026-02-07_143022_programming-languages/
+  ├── report.md              # Full analysis with sources
+  ├── comparison_chart.png   # Visual comparison
+  ├── data.json             # Raw statistics
+  └── code/analysis.py      # Generated code
+```
+
+**What the agent does:** Searches web → Writes code → Creates charts → Generates report → Self-evaluates (all in ~60 seconds)
+
+---
+
 ## Who is this for?
 
 - AI engineers doing research
