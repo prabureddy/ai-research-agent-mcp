@@ -5,6 +5,11 @@ Turn a single prompt into a full research report (web + your notes + code + char
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io/)
+<br>
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/prabureddy/ai-research-agent-mcp/pulls)
+[![YouTube](https://img.shields.io/badge/YouTube-Demo-red?logo=youtube)](https://youtu.be/_cQLKpfDTBY)
+<br>
+[![GitHub stars](https://img.shields.io/github/stars/prabureddy/ai-research-agent-mcp?style=social)](https://github.com/prabureddy/ai-research-agent-mcp)
 
 An autonomous AI agent that researches, codes, and writes comprehensive reports using the Model Context Protocol (MCP).
 
