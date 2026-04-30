@@ -9,6 +9,7 @@ import httpx
 import requests
 from bs4 import BeautifulSoup
 from duckduckgo_search import DDGS
+from tavily import AsyncTavilyClient
 from trafilatura import extract
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -23,6 +24,7 @@ class WebResearchTool:
         self.search_provider = config.search.provider
         self.max_results = config.search.max_results
         self.brave_api_key = config.search.brave_api_key
+        self.tavily_api_key = config.search.tavily_api_key
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def search_duckduckgo(self, query: str, max_results: int) -> list[dict[str, Any]]:
@@ -70,6 +72,30 @@ class WebResearchTool:
                 )
             return results
 
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
+    async def search_tavily(self, query: str, max_results: int) -> list[dict[str, Any]]:
+        """Search using Tavily Search API."""
+        if not self.tavily_api_key:
+            raise ValueError("Tavily API key not configured")
+
+        try:
+            client = AsyncTavilyClient(api_key=self.tavily_api_key)
+            response = await client.search(query=query, max_results=max_results)
+
+            results = []
+            for item in response.get("results", []):
+                results.append(
+                    {
+                        "title": item.get("title", ""),
+                        "url": item.get("url", ""),
+                        "snippet": item.get("content", ""),
+                        "source": "tavily",
+                    }
+                )
+            return results
+        except Exception as e:
+            raise Exception(f"Tavily search failed: {str(e)}")
+
     async def search(
         self, query: str, max_results: Optional[int] = None
     ) -> list[dict[str, Any]]:
@@ -88,6 +114,8 @@ class WebResearchTool:
 
         if self.search_provider == "brave":
             return await self.search_brave(query, max_results)
+        elif self.search_provider == "tavily":
+            return await self.search_tavily(query, max_results)
         else:
             return await self.search_duckduckgo(query, max_results)
 
