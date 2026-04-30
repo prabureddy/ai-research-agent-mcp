@@ -16,6 +16,7 @@ class SearchConfig(BaseModel):
 
     provider: str = Field(default="duckduckgo", description="Search provider to use")
     brave_api_key: Optional[str] = Field(default=None, description="Brave Search API key")
+    tavily_api_key: Optional[str] = Field(default=None, description="Tavily Search API key")
     max_results: int = Field(default=10, description="Maximum search results to return")
 
 
@@ -89,6 +90,7 @@ class Config(BaseModel):
         search_config = SearchConfig(
             provider=os.getenv("SEARCH_PROVIDER", "duckduckgo"),
             brave_api_key=os.getenv("BRAVE_API_KEY"),
+            tavily_api_key=os.getenv("TAVILY_API_KEY"),
             max_results=int(os.getenv("MAX_SEARCH_RESULTS", "10")),
         )
 
