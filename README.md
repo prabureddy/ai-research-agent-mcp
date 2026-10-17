@@ -600,6 +600,9 @@ Add the same configuration as Claude Desktop (see section 5 above for detailed e
 
 ## Usage
 
+For an optional source of web search and page fetching alongside the local
+research tools, see the [Parallel Search MCP companion setup](examples/parallel_search.md).
+
 ### Basic Research Task
 
 #### Simple Query
